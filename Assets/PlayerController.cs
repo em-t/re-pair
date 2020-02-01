@@ -36,9 +36,10 @@ public class PlayerController : MonoBehaviour
         float ver = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(hor, 0f, ver);
 
-        //gameObject.transform.Translate(direction.normalized * speed * Time.deltaTime);
-        //float angle = Vector3.Angle(gameObject.transform.forward, direction);
-        //gameObject.transform.Rotate(0f, angle, 0f);
+        if (direction != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction.normalized), 0.05f);
+        }
 
         if (Input.GetKey(KeyCode.W))
         {
