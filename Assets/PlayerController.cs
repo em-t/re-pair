@@ -34,14 +34,6 @@ public class PlayerController : MonoBehaviour
         float ver = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(hor, 0f, ver);
 
-        //gameObject.transform.Translate(direction.normalized * speed * Time.deltaTime);
-
-        //if (direction != Vector3.zero)
-        //{
-        //    Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
-        //    transform.rotation = rotation;
-        //}
-
         rig.velocity = new Vector3(hor * speed, rig.velocity.y, ver * speed);
 
         rig.freezeRotation = true;
