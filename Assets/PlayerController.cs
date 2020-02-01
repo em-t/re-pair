@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
 
     public float speed;
-    public float rotationSpeed;
     public float jumpForce;
 
     private Vector3 point;
@@ -21,7 +20,6 @@ public class PlayerController : MonoBehaviour
     {
         rig = GetComponent<Rigidbody>();
         collider = GetComponent<CapsuleCollider>();
-        Debug.Log("Game object: " + gameObject);
     }
 
     void FixedUpdate()
@@ -36,24 +34,9 @@ public class PlayerController : MonoBehaviour
         float ver = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(hor, 0f, ver);
 
-        if (direction != Vector3.zero)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction.normalized), 0.05f);
-        }
+        rig.velocity = new Vector3(hor * speed, rig.velocity.y, ver * speed);
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(direction.normalized * speed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.RotateAround(point, -Vector3.up, rotationSpeed * Time.deltaTime);
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            transform.RotateAround(point, Vector3.up, rotationSpeed * Time.deltaTime);
-        }
+        rig.freezeRotation = true;
 
         if (IsGrounded() && Input.GetKey(KeyCode.Space))
         {
