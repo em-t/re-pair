@@ -8,8 +8,6 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float jumpForce;
 
-    private Vector3 point;
-
     public LayerMask jumpables;
 
     private Rigidbody rig;
@@ -25,7 +23,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         PlayerMovement();
-        point = rig.position;
     }
 
     void PlayerMovement()
@@ -51,4 +48,3 @@ public class PlayerController : MonoBehaviour
             collider.radius * .9f, jumpables);
     }
 }
-
