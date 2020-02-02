@@ -4,6 +4,8 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
+
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -24,8 +26,6 @@ public class GameManager : MonoBehaviour
         if(instance == null)
         instance = this;
         DontDestroyOnLoad(gameObject);
-
-
     }
     public void FlipAllCardsInScene(bool toUp = false)
     {
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     public void CreateLevel() {
 
         // Two-dimensional array.
-        int[,] level = new int[,] { { 1, 2 }, { 4, 1 }, { 2, 1 }, { 1, 3 } };
+        int[,] level = new int[,] { { 1, 2, 5}, { 4, 1, 3 }, { 2, 1, 4 }, { 1, 3, 5 } };
 
 
         for(int i = 0; i < level.GetLength(0); i++)
@@ -55,13 +55,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void UpdateAllCards()
-    {
-        for(int i = 0; i < allCardScripts.Count; i++)
-        {
-            allCardScripts[i].UpdateMe(myPack.Cards[i]);
-        }
-    }
     void Start()
     {
     }
@@ -74,6 +67,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("GAME VITTU OVER.");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+
         if (cardsUp.Count >= 3) {
             if (cardsUp[0].cardValue == cardsUp[1].cardValue) {
                 cardsUp[0].setState("falling");

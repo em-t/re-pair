@@ -10,7 +10,6 @@ public class GameStarter : MonoBehaviour
         GameManager.instance.CreateLevel();
         GameManager.instance.FlipAllCardsInScene();
         Debug.Log("cards flipped");
-        GameManager.instance.UpdateAllCards();
     }
 
 }

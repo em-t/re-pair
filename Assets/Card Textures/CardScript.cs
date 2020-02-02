@@ -8,7 +8,7 @@ public class CardScript : MonoBehaviour
     public int cardValue = 2;
     // Start is called before the first frame update
     public SpriteRenderer rend;
-    public string state="static";
+    public string state="down";
     private int t = 0;
     public List<Sprite> sprites;
     public Card card;
@@ -25,26 +25,24 @@ public class CardScript : MonoBehaviour
     }
     public void FlipMe(bool toUp = true)
     {
-        if (!toUp)
-        transform.eulerAngles = new Vector3( 0,0,180 );
-        if (toUp)
-        transform.eulerAngles = new Vector3(0,0,0);
-    }
-    public void UpdateMe(Card card)
-    {
-        //Debug.Log("I am" + card.name);
-        //rend.sprite = card.sprite;
-        //cardValue = card.arvo;
+        if (!toUp) {
+            transform.eulerAngles = new Vector3( 0,0,180 );
+            setState("down");
+        }
+        if (toUp) {
+            transform.eulerAngles = new Vector3(0,0,0);
+            setState("up");
+        }
     }
 
     public void setState(string newState)
     {
-        if (newState == "flipUp") {
+        if (newState == "up") {
             if (!GameManager.instance.cardsUp.Contains(this)) {
                 GameManager.instance.cardsUp.Add(this);
                 Debug.Log("added " + gameObject.name + " to cardsUp");
             }
-        } else if (newState == "flipDown") {
+        } else if (newState == "down") {
         }
         Debug.Log(gameObject.name + " setstate to " + newState);
         state = newState;
@@ -57,14 +55,14 @@ public class CardScript : MonoBehaviour
         if (state == "flipDown") {
             if (transform.eulerAngles.z > 180 ) {
                 transform.eulerAngles = new Vector3(0,0,180);
-                setState("static");
+                setState("down");
                 return;
             }
             transform.Rotate(new Vector3(0,0,2));
         } else if (state == "flipUp") {
-             if (transform.eulerAngles.z > 358 ) {
+             if (transform.eulerAngles.z > 356 ) {
                 transform.eulerAngles = new Vector3(0,0,0);
-                setState("wait");
+                setState("up");
                 return;
             }
             transform.Rotate(new Vector3(0,0,2));

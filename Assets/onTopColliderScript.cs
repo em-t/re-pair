@@ -17,7 +17,7 @@ public class onTopColliderScript : MonoBehaviour
 
         if (col.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            if (childScript.state == "static") {
+            if (childScript.state == "down") {
                 childScript.setState("flipUp");
             }
         }
