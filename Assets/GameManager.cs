@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     public CardScript[] cardScripts;
     public List<CardScript> cardsUp;
 
+    public GameObject cardPredab;
+
+    public Sprite[] sprites;
+
     void Awake()
     {
         if(instance == null)
