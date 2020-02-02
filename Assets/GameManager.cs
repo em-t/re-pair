@@ -11,19 +11,22 @@ public class GameManager : MonoBehaviour
     public List<CardScript> allCardScripts;
     public GameObject player;
 
+    public CardScript[] cardScripts;
+    public List<CardScript> cardsUp;
+
     void Awake()
     {
         if(instance == null)
         instance = this;
         DontDestroyOnLoad(gameObject);
-
+        cardScripts = FindObjectsOfType<CardScript>();
 
     }
-    public void FlipAllCardsInScene(bool up = true)
+    public void FlipAllCardsInScene(bool toUp = false)
     {
-        foreach(CardScript cs in allCardScripts)
+        foreach(CardScript cs in cardScripts)
         {
-            cs.FlipMe(up);
+            cs.FlipMe(toUp);
         }
     }
     public void ShuffleCards()
@@ -50,6 +53,13 @@ public class GameManager : MonoBehaviour
         if (player != null && player.transform.GetChild(0).GetComponent<PlayerController>().isDead == true)
         {
             Debug.Log("GAME VITTU OVER.");
+        }
+        if (cardsUp.Count >= 3) {
+            foreach(CardScript card in cardsUp)
+            {
+                card.setState("flipDown");
+            }
+            cardsUp.Clear();
         }
     }
 
