@@ -7,9 +7,9 @@ public class GameStarter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.instance.CreateLevel();
         GameManager.instance.FlipAllCardsInScene();
         Debug.Log("cards flipped");
-        //GameManager.instance.ShuffleCards();
         GameManager.instance.UpdateAllCards();
     }
 
