@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,12 +10,11 @@ public class GameManager : MonoBehaviour
     public CardPack myPack;
     public List<Card> shuffledCards;
     public List<CardScript> allCardScripts;
+    public GameObject player;
+
     public CardScript[] cardScripts;
     public List<CardScript> cardsUp;
 
-    public GameObject cardPredab;
-
-    public Sprite[] sprites;
     void Awake()
     {
         if(instance == null)
@@ -65,6 +65,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player != null && player.transform.GetChild(0).GetComponent<PlayerController>().isDead == true)
+        {
+            Debug.Log("GAME VITTU OVER.");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         if (cardsUp.Count >= 3) {
             if (cardsUp[0].cardValue == cardsUp[1].cardValue) {
                 cardsUp[0].setState("falling");
@@ -79,4 +84,6 @@ public class GameManager : MonoBehaviour
             cardsUp.Clear();
         }
     }
+
+
 }
