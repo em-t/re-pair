@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
         if (player != null && player.transform.GetChild(0).GetComponent<PlayerController>().isDead == true)
         {
             Debug.Log("GAME VITTU OVER.");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         if (cardsUp.Count >= 3) {
             foreach(CardScript card in cardsUp)
