@@ -9,19 +9,20 @@ public class GameManager : MonoBehaviour
     public CardPack myPack;
     public List<Card> shuffledCards;
     public List<CardScript> allCardScripts;
+    public CardScript[] cardScripts;
     void Awake()
     {
         if(instance == null)
         instance = this;
         DontDestroyOnLoad(gameObject);
-
+        cardScripts = FindObjectsOfType<CardScript>();
 
     }
-    public void FlipAllCardsInScene(bool up = true)
+    public void FlipAllCardsInScene(bool toUp = false)
     {
-        foreach(CardScript cs in allCardScripts)
+        foreach(CardScript cs in cardScripts)
         {
-            cs.FlipMe(up);
+            cs.FlipMe(toUp);
         }
     }
     public void ShuffleCards()

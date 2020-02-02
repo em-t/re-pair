@@ -5,10 +5,11 @@ using UnityEngine;
 public class onTopColliderScript : MonoBehaviour
 {
 
-    public CardScript parentScript;
+    public CardScript childScript;
     void Start()
     {
-        parentScript = transform.parent.GetComponent<CardScript>();
+        var card = this.gameObject.transform.GetChild(0);
+        childScript = card.GetComponent<CardScript>();
     }
 
     void OnTriggerExit(Collider col)
@@ -16,7 +17,7 @@ public class onTopColliderScript : MonoBehaviour
 
         if (col.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            parentScript.setState("flipUp");
+            childScript.setState("flipUp");
         }
     }
 

@@ -21,11 +21,11 @@ public class CardScript : MonoBehaviour
         //gameObject.GetComponent<Renderer>().material = material;
         //var card = GameManager.instance.myPack.Cards[2];
     }
-    public void FlipMe(bool up = true)
+    public void FlipMe(bool toUp = true)
     {
-        if (!up)
+        if (!toUp)
         transform.eulerAngles = new Vector3( 0,0,180 );
-        if (up)
+        if (toUp)
         transform.eulerAngles = new Vector3(0,0,0);
     }
     public void UpdateMe(Card card)
@@ -50,14 +50,14 @@ public class CardScript : MonoBehaviour
                 setState("static");
                 return;
             }
-            transform.Rotate(new Vector3(0,0,1));
+            transform.Rotate(new Vector3(0,0,2));
         } else if (state == "flipUp") {
              if (transform.eulerAngles.z > 358 ) {
                 transform.eulerAngles = new Vector3(0,0,0);
                 setState("wait");
                 return;
             }
-            transform.Rotate(new Vector3(0,0,1));
+            transform.Rotate(new Vector3(0,0,2));
         } else if (state == "wait") {
             if (t == 180) {
                 setState("flipDown");
