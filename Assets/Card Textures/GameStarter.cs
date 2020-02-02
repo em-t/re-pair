@@ -8,7 +8,7 @@ public class GameStarter : MonoBehaviour
     void Start()
     {
         GameManager.instance.FlipAllCardsInScene();
-
+        Debug.Log("cards flipped");
         //GameManager.instance.ShuffleCards();
         GameManager.instance.UpdateAllCards();
     }

@@ -9,6 +9,7 @@ public class CardScript : MonoBehaviour
     // Start is called before the first frame update
     public SpriteRenderer rend;
     private string state="static";
+    private int t = 0;
     public List<Sprite> sprites;
     public Card card;
     void Start()
@@ -34,24 +35,36 @@ public class CardScript : MonoBehaviour
         //cardValue = card.arvo;
     }
 
-    void OnCollisionExit(Collision col)
+    public void setState(string newState)
     {
-        if (col.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            //FlipMe();
-            state = "flip";
-        }
+        state = newState;
+        t = 0;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
-        if (state == "flip") {
-            if (transform.eulerAngles.z == 0) return;
-            transform.Rotate(new Vector3(0,0,-1));
+        if (state == "flipDown") {
+            if (transform.eulerAngles.z > 180 ) {
+                transform.eulerAngles = new Vector3(0,0,180);
+                setState("static");
+                return;
+            }
+            transform.Rotate(new Vector3(0,0,1));
+        } else if (state == "flipUp") {
+             if (transform.eulerAngles.z > 358 ) {
+                transform.eulerAngles = new Vector3(0,0,0);
+                setState("wait");
+                return;
+            }
+            transform.Rotate(new Vector3(0,0,1));
+        } else if (state == "wait") {
+            if (t == 180) {
+                setState("flipDown");
+                return;
+            }
         }
-
+        t = t + 1;
         //transform.eulerAngles = Vector3.Lerp(transform.eulerAngles,new Vector3(0,0,180),0.5f * Time.deltaTime) ;
     }
 }

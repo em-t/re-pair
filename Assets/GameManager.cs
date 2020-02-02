@@ -14,8 +14,10 @@ public class GameManager : MonoBehaviour
         if(instance == null)
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+
     }
-    public void FlipAllCardsInScene(bool up = false)
+    public void FlipAllCardsInScene(bool up = true)
     {
         foreach(CardScript cs in allCardScripts)
         {
