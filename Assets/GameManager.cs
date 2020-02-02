@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public CardPack myPack;
     public List<Card> shuffledCards;
     public List<CardScript> allCardScripts;
+    public GameObject player;
+
     void Awake()
     {
         if(instance == null)
@@ -45,6 +47,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (player != null && player.transform.GetChild(0).GetComponent<PlayerController>().isDead == true)
+        {
+            Debug.Log("GAME VITTU OVER.");
+        }
     }
+
+
 }

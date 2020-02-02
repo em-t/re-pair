@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rig;
     private CapsuleCollider collider;
 
+    public bool isDead = false;
+
 
     void Start()
     {
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         PlayerMovement();
+        CheckIsDead();
     }
 
     void PlayerMovement()
@@ -46,5 +49,17 @@ public class PlayerController : MonoBehaviour
     {
         return Physics.CheckCapsule(collider.bounds.center, new Vector3(collider.bounds.center.x, collider.bounds.min.y, collider.bounds.center.z),
             collider.radius * .9f, jumpables);
+    }
+
+    private void CheckIsDead()
+    {
+        if (rig.position.y < -10)
+        {
+            isDead = true;
+        }
+        else
+        {
+            isDead = false;
+        }
     }
 }
