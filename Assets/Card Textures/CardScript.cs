@@ -40,7 +40,10 @@ public class CardScript : MonoBehaviour
     public void setState(string newState)
     {
         if (newState == "flipUp") {
-            GameManager.instance.cardsUp.Add(this);
+            if (!GameManager.instance.cardsUp.Contains(this)) {
+                GameManager.instance.cardsUp.Add(this);
+                Debug.Log("added " + gameObject.name + " to cardsUp");
+            }
         } else if (newState == "flipDown") {
         }
         Debug.Log(gameObject.name + " setstate to " + newState);
@@ -70,6 +73,12 @@ public class CardScript : MonoBehaviour
             //    setState("flipDown");
             //    return;
             //}
+        } else if (state == "falling") {
+            transform.Translate(Vector3.down * 1 / 20);
+            if (t > 120) {
+                Destroy(gameObject);
+                return;
+            }
         }
         t = t + 1;
         //transform.eulerAngles = Vector3.Lerp(transform.eulerAngles,new Vector3(0,0,180),0.5f * Time.deltaTime) ;
