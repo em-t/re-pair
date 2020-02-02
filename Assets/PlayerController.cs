@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         {
             rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
-        
+
     }
 
     private bool IsGrounded()

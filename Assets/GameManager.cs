@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public List<Card> shuffledCards;
     public List<CardScript> allCardScripts;
     public CardScript[] cardScripts;
+    public List<CardScript> cardsUp;
     void Awake()
     {
         if(instance == null)
@@ -46,6 +47,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (cardsUp.Count >= 3) {
+            foreach(CardScript card in cardsUp)
+            {
+                card.setState("flipDown");
+            }
+            cardsUp.Clear();
+        }
     }
 }
