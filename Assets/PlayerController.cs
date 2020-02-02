@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckIsDead()
     {
-        if (rig.position.y < -10)
+        if (rig.position.y < -20)
         {
             isDead = true;
         }

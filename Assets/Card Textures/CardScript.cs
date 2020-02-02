@@ -38,13 +38,13 @@ public class CardScript : MonoBehaviour
     public void setState(string newState)
     {
         if (newState == "up") {
-            if (!GameManager.instance.cardsUp.Contains(this)) {
-                GameManager.instance.cardsUp.Add(this);
+            if (!GameManager.Instance.cardsUp.Contains(this)) {
+                GameManager.Instance.cardsUp.Add(this);
                 Debug.Log("added " + gameObject.name + " to cardsUp");
             }
         } else if (newState == "down") {
         }
-        Debug.Log(gameObject.name + " setstate to " + newState);
+        //Debug.Log(gameObject.name + " setstate to " + newState);
         state = newState;
         t = 0;
     }
